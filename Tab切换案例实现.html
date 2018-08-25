@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tab切换案例实现(有错)</title>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    .box {
+        width: 600px;
+        height:400px;
+        margin: 100px auto;
+        border: 1px solid #000;
+        overflow: hidden;
+    }
+    ul {
+        list-style-type: none;
+    }
+    .d1 {
+        width: 600px;
+        height: 50px;
+    }
+    .d1 span {
+        display: inline-block;
+        width:  100px;
+        line-height: 50px;
+        text-align:  center;
+        margin-left: 30px;
+        background: red;
+        cursor: pointer;
+    }
+    .d1 span.span1 {
+        background-color: darkmagenta;
+    }
+    .footer {
+        width: 600px;
+        height: 350px;
+        position: relative;
+    }
+    ul li {
+        width: 600px;
+        height: 350px;
+        background: darkmagenta;
+        position:  absolute;
+        display: none;
+    }
+     .li1 {
+        display: block;
+    }
+
+</style>
+
+
+</head>
+<body>
+<div class="box" id="box1">
+    <div class="d1">
+        <span class="span1">新闻</span>
+        <span>娱乐</span>
+        <span>体育</span>
+        <span>户外</span>
+    </div>
+
+    <div class="footer">
+        <ul id="uu">
+            <li class="li1">我是新闻</li>
+            <li>我是娱乐</li>
+            <li>我是体育</li>
+            <li>我是户外活动</li>
+        </ul>
+
+    </div>
+</div>
+
+
+<script src="common.js"></script>
+<script>
+    //获取每个span标签
+    var sp1 =  my$("box1").getElementsByTagName("span");
+    //获取所有的li标签
+    var list =  my$("box1").getElementsByTagName("li");
+    //循环遍历每个span标签
+    for (var i = 0; i < sp1.length; i++) {
+        //在点击之前就把索引保存在span标签中
+        sp1[i].setAttribute ("index", i);
+        //为每个span标签添加点击事件
+        sp1[i].onclick = function () {
+            //第一件事，将所有的span类样式移除
+          for (j = 0; j < sp1.length; j++) {
+              sp1[j].removeAttribute ("class");
+          }
+            //第二件事，当前被点击的span应用类样式
+            this.className = "span1";
+            //span被点击时获取储存的索引值
+            var num = this.getAttribute ("index");
+            //获取所有li标签后，每个标签先全部隐藏
+            for (var k = 0; k < num.length; k++) {
+//                list[k].removeAttribute ("class");
+                list[k].className = "";
+            }
+            //被点击的li标签显示
+            list[num].className = "li1";
+
+        }
+    }
+
+
+</script>
+</body>
+
+</html>
