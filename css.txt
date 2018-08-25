@@ -1,0 +1,621 @@
+字体font语法样式书写要求：选择器{font:font-style font-weight font-size/line-height font-family;}
+		简写模式：必须保留font-size和font-family属性，否则font不起作用
+标签选择器：
+	标签{属性：属性值}。如<p></p>标签。
+类选择器：
+	.类名{属性：属性值}，调用如class="类名"
+多类选择器：
+	.类名1{属性：属性值}.类名2{属性：属性值}，调用如class="类名1 类名2"
+ID选择器：
+	#id名{属性：属性值}调用如id="名"
+	ID选择器和多类选择器区别：多类选择器可多次重复使用，ID选择器只允许使用一次
+通配符选择器：
+	*{属性：属性值}	*代表所有选择器(不常用)
+伪类选择器：	链接:状态
+	链接伪类选择器(按顺序写)： :link			/*未访问的链接*/
+				   :visited		/*已访问的链接，鼠标点过一次，不常用*/
+				   :hover		/*鼠标移动到链接上*/
+				   :active		/*选定的链接，点击鼠标不松开时，不常用*/
+结构(位置)伪类选择器(css3)：
+	:first-child	：选取其中父元素的首个子元素
+	:last-child	：选取其中父元素的最后一个元素
+	:nth-child(n)	：选取其中第n个元素，even偶数，odd奇数，公式n或2n或3n
+	:nth-last-child(n)	：选取其中从last(倒数)第n个元素
+目标伪类选择器(css3)：
+	:target{属性：属性值}	用来匹配文档中URL中某个标志符的目标元素
+		uri中的标志通常会包含一个#，后面带有一个标志符名称，如#box_one,:target就是匹配ID为"box_one"的目标元素
+
+css外观属性：
+
+颜色：	color:red/greed/blue等		（预定义颜色值，英文单词）
+	color:#FF0000等		（十六进制，比较常用）
+	color:rdb(255,0,0)或(100%,0%,0%)	(RGB代码)
+行间距：line-height	(用于设置行与行之间的距离)
+水平对齐方式：  text-align:left（左对齐）
+		text-align:center（居中对齐）
+		text-align:right（右对齐）
+首行缩进：text-indent:2em	（2em表示2个字）
+字间距：	letter-spacing:normal	(默认normal是2px/2个字)
+单词间距：	word-spacing:normal
+文字半透明(css3)：
+		color:rgba(r,g,b,a)//（红，绿，蓝，透明度）a是alpha 取值范围0~1
+文字阴影(css3)：
+		text-shadow:水平位置 垂直位置 模糊距离 rgba()阴影颜色
+			   （必填0	必填0	可填0	可填）
+引入css样式方式：
+	内部样式：html内部书写
+	内联样式（行内式）：<标签名 style="属性1：属性值1；属性2：属性值2；">内容</标签名>
+外部样式/链入式（常用）：
+	<head>
+		<link rel="stylesheet" href="css文件的路径" type="text/css" />
+	</head>
+块级元素：如<p>,<div>,<h1>~<h6>,<ul>,<ol>,<li>等。
+
+	特点：1总是从新行开始。2高度，行高，外边距及内边距都是可控制。
+		3宽度默认100%。4可容纳内联元素和其他块元素
+
+行内元素：如<a>,<strong>,<b>,<em>,<i>,<span>,等。
+	特点：1和相邻的行内元素在一行上。2高，宽无效，但水平方向的padding和margin可以设置，垂直方向的无效。
+		3默认宽度就是它本身内容的宽度。4行内元素只能容纳文本或则其他行内元素。
+
+行内块元素标签：<img />,<input />,<td>等。
+	特点：1和相邻行内元素(行内块)在一行上，但是之间会有空白缝隙。
+		2默认宽度就是它本身内容的宽度。3高度，行高，外边距及内边距都是可以控制。
+
+显示模式转换：块级元素标签 转换 行内元素标签（display:inline）
+		行内元素标签 转换 块级元素标签（display:block）
+		行内元素标签 转换 行内块级标签（display:inline-block）
+css复合选择器：
+	交集选择器：如 （段落p标签内类名为.red，中间不能有空格）p.red {属性：属性值}
+	并集选择器：如 （都有同一属性）div, p, span，.text, #text {属性：属性值}
+	后代选择器：如 （选父元素的所有后代元素，中间用空格分开）div p {属性：属性值}
+	子元素选择器：如 （选父元素下的亲儿子元素，用大于号>链接）.text > p {属性：属性值}
+属性选择器：选取标签带有特殊属性的选择器，用[]中括号表示。选择器[类名]
+	如	a[title] {color:red};
+		input[type=text] {color:red};
+		div[class^=font]{} 表示只要开始位置是font就全选中
+		div[class$=font]{} 表示只要结束位置是font就全选中
+		div[class*=font]{} 表示只要有font不管什么位置都选中
+伪元素选择器(css3)：
+		p::first-letter {属性：属性值}	表示选中p段落里的第一个字
+		p::first-line {} 表示选中p段落里的第一行
+		p::selection {} 表示当我们 选中p段落中的文字时 的样式
+		div::before {content:""} 表示在div盒子内部的前面插入（必须配合content使用）
+		div::after {content:""}  表示在div盒子内部后面插入（必须配合content使用）
+css背景:
+	background-color:颜色;
+	background-image:url(地址);
+	background-repeat:是否平铺/平铺方式;
+	background-position:背景位置;
+	backgeound-attachment:scroll(滚动的背景，默认) / fixed（不滚动，固定的背景）
+	背景样式的简写：
+		background：背景颜色 背景图片地址 背景平铺 背景滚动方式 背景位置
+		    	（#000 		url(地址)    no-repeat   fixed    水平对齐 垂直对齐）
+背景透明(css3)：
+	background:rgba(0 , 0 , 0 , 0.5);
+背景缩放（css3）：
+	background-size:100px(尽量写一个值，防止失真) / 50%;	
+	background-size:contain;	图片等比例缩放，如果宽 或 高有一个铺满盒子则不再缩放
+	background-size:cover;(常用)	图片等比例缩放，并保证宽和高铺满盒子，超出部分则隐藏
+
+多背景图片（css3）：
+	background:url(图片地址1) no-repeat, url(图片地址2) no-repeat, url(图片地址3) no-repeat #ff00;
+	注意：一个元素可设置多背景图，每组用逗号隔开，
+		图片有交集时前面会覆盖后面的图片，背景颜色必须定义最后一组上。
+文本装饰：
+
+	text-decoration:none;(默认，标准文本，可删除链接的下划线)
+
+	text-decoration:underline;(定义文本有下划线，链接自带)
+
+	text-decoration:overline;(定义文本上有一条线)
+	text-decoration:line-through;(定义文本中间有一条线，删除线)
+
+css的层叠：相同样式，最后样式覆盖前面样式
+CSS的继承：子承父业
+CSS的优先级：
+	1使用!important声明（最重要）
+	2内嵌在HTML元素的style属性里面的声明（1,0,0,0）
+	3使用ID选择器（0,1,0,0）
+	4使用类选择器，属性选择器，伪元素选择器，伪类选择器（0,0,1,0）
+	5使用元素(标签)选择器（0,0,0,1）
+	6使用通配符选择器如*等（最小）
+	7同一类选择器遵循 就近原则
+    总结：权重是优先级的算法，层叠是优先级的表现
+
+盒子模型（重点）：
+	盒子边框：border-width:粗细度；
+		  border-color:颜色；
+		  border-style:样式；solid(实线)比较常用，dashed(虚线)	
+	综合写法：border:四边宽度 四边样式 四边颜色
+合并细线表格：
+	table{border-collapse:collapse;}collapse表示合并的意思
+		表示边框合并在一起
+圆角边框：顺时针
+	border-radius:弧度值；
+	四边框（top-left top-right bottom-right bottom-left）
+	二边框 (上左和右下，上右和左下)
+	三边框（上左，右上和左下，右下）
+  内边距(padding)：内容和边框的距离
+	padding:上下 左右	padding:上 左右 下
+	padding:上 右 下 左
+  外边距(margin):盒子距外部的距离
+外边距实现盒子居中：
+	1，必须是块级元素	2，盒子必须指定宽度
+	左右外边距都设置为auto，就可以使块级元素水平居中
+清除内外边距：
+	*{margin:0;
+	padding:0;}
+行内元素：
+	只有左右外边距，没有上下外边距
+	我们尽量不要给行内元素指定上下的内外边距就好了
+相邻的块元素垂直外边距的合并：（尽量避免）
+	存在垂直的块级盒子，以最大的外边距为准重叠
+镶嵌(父子)块元素外边距合并：
+	解决方案1可为父元素定义 边框(border)或者内边距(padding)
+		2可为父元素添加overflow:hidden(解决高度塌陷）
+
+计算盒子的尺寸：
+	注意：
+		1，width和height仅适用于块级元素，对行内元素无效（img标签和input除外）
+		2，计算盒子高度时，考虑上下两个盒子垂直外边距合并的情况
+		3，如果盒子没有给定宽/高 或者 继承父亲的宽/高，则padding不会影响盒子大小
+
+CSS3盒模型：
+	以前，box-sizing:content-box 盒子大小为=width+padding+border(W3c标准)
+
+	css3，box-sizing:border-box 盒子大小为width (border和padding包含到width里面了)
+
+盒子阴影：
+	box-shadow:水平位置 垂直位置 模糊距离 阴影尺寸(影子大小) 阴影颜色   内	 /外阴影
+			5px   5px     5px	5px		   rgba()   inset/outset(默认外阴影，要求不用写)
+			必填  必填	可填	可填		   可填		可填
+
+CSS定位机制3种：普通流（标准流），浮动，定位
+
+	浮动：	目的是为了让多个块级元素在同一行上显示
+float:left;左浮动
+float:right;右浮动
+	float（浮漏特）
+		浮：加了浮动的盒子是浮起来，漂浮在其他的标准（普通）盒子上面
+		漏：加了浮动的盒子，不占位置，浮起来，将它原来的位置漏给了标准流盒子
+		特：首先浮动的盒子需要和标准流的父级盒子搭配使用，
+			其次可以使元素的显示模式体现为行内块级元素特性。
+布局流程：
+	1一列固定宽度高度且居中
+	2两列左窄右宽型
+	3通栏平均分布型
+
+清除浮动的方法：	clear:both	表示清除两侧浮动
+
+	1。额外标签法（不推荐）：W3c推荐做法在浮动元素末尾添加一个空标签如<div style="clear:both"><div/>
+	2。父级元素添加overflow属性方法：		overflow:hidden/auto/scroll(滚动的背景)
+		可触发BFC的方式，BFC可清除浮动的影响
+	3。使用after伪元素清除浮动
+		:after方式为空元素的升级版，好处是不用单独加标签
+	使用方法：
+		.clearfix:after { centent:"."; display:block; height:0; clear:both; visibility:hidden;}
+			表示在后面添加一个内容"."；转换块级元素；高度清0；清除左右浮动；隐藏盒子内容；
+
+		.clearfix {*zoom: 1;}表示IE6和7专有清除浮动方法
+   4。推荐使用before和after双伪元素清除浮动
+	使用方法：
+		.clerafix:before, .clearfix:after { content:""; display:table}
+			尾部插入空，dispaly：table(触发BFC清除浮动)
+		.clearfix:after { clear:both;}
+		.clearfix { *zoom:1;}
+
+（重要）完整定位：
+		1，边偏移如top：100px；
+
+		2，定位模式：position:
+
+			1,static	自动定位（默认）也叫静态定位
+	静态定位：对于边偏移无效。也可以清除定位，原来有定位的盒子，不想加了，可以使用
+
+			2，relative	相对定位
+	通过偏移移动位置，但是原占有位置继续占有，每次移动位置（都是相对自己来移动）不脱离标准流
+
+			3，absoulute	绝对定位
+	通过偏移移动位置，完全脱离标准流，不占位置
+		A父元素没有定位，孩子以浏览器为基准定位
+		B如果父元素有定位，则孩子以（最近的父元素或者祖父）为基准定位（不管父亲/祖父是什么定位，只要有定位即可）
+			（最常用）子绝父相
+
+			4，fixed	固定定位
+		A固定定位的元素和父元素无关，只认浏览器
+		B完全脱离标准流，不占位置，《不随滚动条而滚动》
+		C  ie6等低版本浏览器不支持固定定位
+		D固定定位的盒子一定要写宽和高，除非有内容撑开不用写
+叠放顺序（z-index）:0	index是序号的意思
+	（取值范围：正整数，负整数和0）
+	注意：
+		1.z-index的默认值0，取值越大，定位元素在层叠元素中居上
+		2.如果取值相同，后来者居上
+		3.后面的数字不能加单位
+		4.只有绝对定位，相对定位，固定定位有此属性，其余标准流，浮动，静态定位都无此属性
+
+元素的显示和隐藏：
+
+（常用）display：none;隐藏对象
+	display:block;除了是转换块级元素，还有 显示元素 的意思
+		特点：隐藏之后不保留位置
+
+		vizibility:hidden;对象隐藏
+		vizobility:visible;对象可视
+		特点：隐藏后保留位置
+溢出：
+	overflow:hidden;超出的内容部分隐藏掉
+	
+	overflow:auto;超出的部分自动显示滚动条
+	
+	overflow:visible;默认，超出的显示
+	overflow:scroll;不管超不超出都显示滚动条
+
+CSS高级技巧：
+
+用户界面：
+	鼠标样式：cursor
+		cursor:default;小白
+		cursor:pointer;小手
+		cursor:move;移动
+		cersor:text;文本
+轮廓：outline
+	outline:0;或outline:none;	(表单/表格)轮廓线清零一般都是这么写
+
+防止拖拽文本域：
+	ressize:none;
+
+垂直对齐vertical-align
+	[通常用来控制图片/表单与文字对齐]
+	vertical-align:baseline;基线对齐(默认)
+	vertical-align:top;顶线对齐
+	vertical-align:bottom;底线对齐
+（一般都用）	vertical-align:middle;中线对齐
+
+去除图片底侧的空白缝隙
+	图片或表单等 行内块级元素，他底线会和父元素的基线对齐，会造成图片底侧会有空白空隙
+	解决方案2种：
+		A给img转换为块级元素display:block;
+		B让图片不以基线对齐：vertical-align:top;以顶线对齐（用最多）	vertical-align:maddle;以中线对齐；
+溢出的文字隐藏：
+	主要处理英文：自动换行
+		word-break:mormal;默认
+		word-break:break-all;允许单词内换行
+		word-break:keep-all;只能整个单词或有连字符处换行
+	主要处理中文：
+		white-space:nowrap;强制一行显示（通常使用）
+		white-space:normal;默认处理
+文字溢出：
+	text-overflow:clip；直接裁剪，不显示省略标记(....)
+	text-overflow:ellipsis;当对象文本溢出时显示省略标记(.....)
+		{white-space:nowrap;强制一行显示
+		 overflow:hidden;溢出隐藏
+		 text-overflow:ellipsis;超出时显示省略标记
+		}三者必须搭配使用才能有text-overflow:ellipsis效果
+				
+CSS精灵图（组合图）技术：sprite
+	现指定背景图片(组合图片)background:url(背景组合图地址) no-repeat;
+	再指定想要的背景大小，背景位置background-position:X轴 Y轴；
+		位置（上是负的，下是正的，左是负的，右是正的。）一般全是负的
+
+	精灵图的制作：一般用ps软件（小公司背景图片少，维护成本高，就不推荐使用）
+
+		新建文件叫sprite的文件，宽度是取决于最宽的背景图，背景必须是透明的，间隔至少也是偶数像素
+		一般存放的是小的装饰性的背景图片(图层)，插入图片不能往上放
+		（1保存为PSD格式以后容易修改添加，2保存为透明图片PNG/GIF格式，网页制作需要插入的图片）
+	
+字体图标：
+		很好的解决了精灵图放大缩小失真问题。
+		可以做成图片一样可以做的事情。
+		移动端用的比较多
+
+	推荐网站1，icomoon.io外国的
+		2，iconfont.cn中国阿里巴巴的
+
+	使用流程：1，UI人员设计字体图标效果图（svg格式）
+		2，上传生成兼容性字体文件包，推荐网站icomoon.io外国的
+		3，前端人员下载兼容字体文件包到本地
+		4，把文件包引入HTML页面中【把fonts(字体)文件放到项目中】
+第一步：在样式里面声明字体：告诉别人我们自己声明的字体
+	@font-face{		/*电脑没有的字体，我们需要声明*/
+		font-family:'icomoon';		/*icomoon名字，可以任意起名*/
+		src: url('fonts/icomoon.eot?7kkyc2');
+		src: url('fonts/icomoon.eot?7kkyc2#iefix') format('embedded-opentype'),
+		     url('fonts/icomoon.ttf?7kkyc2') format('truetype'),
+		     url('fonts/icomoon.woff?7kkyc2') format('woff'),
+		     url('fonts/icomoon.svg?7kkyc2') format('svg');
+		font-weight:normal;
+		font-style:normal;
+		}
+
+第二步：给盒子使用字体：
+	（类选择器）span{
+			font-family:"iomoon";
+		}
+
+第三步：盒子里面添加结构：
+	span::before {
+		conter: "\e900";
+	}	
+或者：
+	<span>□< /span>
+
+滑动门技术：一般用在导航栏，利用CSS精灵实现
+	一般经典布局： 
+			a {
+			   display:inline-block;	//转换行内块元素
+			   height:30px;			//不能给宽度，否自不能实现滑动门效果
+			   background:url(地址) no-repeat;//不平铺，默认图片左对齐
+			   paddding-left:15px;//撑开合适宽度
+			}
+			a span {
+				display:inline-block;
+				height:30px;		//还是绝对不能给宽度
+				background:url(地址) no-repeat right;//不平铺，选图片右对齐
+				paddding-right:15px;//撑开合适宽度
+			}
+
+			<li>
+				<a href="#">
+					<span>导航内容</span>
+				<a/>
+			<li/>
+
+			
+滑动门技术总结：  1：a 设置背景左侧（background：src(地址)no-repeat），用padding-left撑开合适宽度
+		  2：span 设置背景右侧（background：src(地址)no-repeat right），padding-right撑开合适宽度,剩下由文字撑开宽度
+		  3：之所以a包含span，因为整个导航都是可点击的
+
+CSS3过渡动画效果：(如果有多组属性变化，用逗号（,）隔开)
+	《写在样式里》《谁做动画谁加过渡》
+
+	transition(过渡)：要过渡的属性名称（必填）  花费的时间（必填）  运动曲线  何时开始
+		1，transition-property(规定css过渡属性的名称)
+		2，transition-duration(过渡效果所用的时间)默认0，单位秒（s）
+		3，transition-timing-function(过渡效果的时间曲线)默认是ease（匀速）
+			linear： 线性过渡。等同于贝塞尔曲线(0.0, 0.0, 1.0, 1.0) 
+			ease： 平滑过渡。等同于贝塞尔曲线(0.25, 0.1, 0.25, 1.0) 
+			ease-in： 由慢到快。等同于贝塞尔曲线(0.42, 0, 1.0, 1.0) 
+			ease-out： 由快到慢。等同于贝塞尔曲线(0, 0, 0.58, 1.0) 
+			ease-in-out： 由慢到快再到慢。等同于贝塞尔曲线(0.42, 0, 0.58, 1.0) 
+			cubic-bezier(<number>, <number>, <number>, <number>)： 特定的贝塞尔曲线类型，4个数值需在[0, 1]区间内 
+		4，transition-delay(过渡的延迟时间)
+	所有属性都变化用all就可以，
+		如：transition: all 0.5s ease 0s;
+
+2D变形（css3）transform:可以实现元素的位移，旋转，倾斜，缩放，甚至支持矩阵方式，主要配合过渡（transition）和动画使用
+		
+	1》移动（X,Y）；
+		transform:translate(X轴，Y轴)；
+			translate(100px);	//一个数是移动X轴；
+			translateX(100px);	//只移动X轴100px；
+			translateY(100px);	//只移动Y轴100px；
+			translate(50%,50%);	//意思是移动自己宽度的一般（用于定位最好）
+
+	2》缩放（X,Y）；
+		transform:scale(X轴，Y轴)；
+			默认是1，超出则是放大，减小则是缩小
+
+			scale(2);	//一个数是X轴Y轴同时缩放
+
+	3》旋转（180度）；
+		transform:rotate(180deg);//单位deg(度)
+			顺时针为正值，逆时针为负值。
+
+	4》变形中心点：		X轴 Y轴；
+	如果是4个角度：
+		transform-origin: left top;
+	精确位置用像素表示：
+		transform-origin: 10px 10px;
+		
+		5》倾斜
+		transform:skew(上边dog，左边dog)；
+
+3D变形（CSS3）transform(分为：X轴·Y轴·Z轴)
+	transform:ratateX(大小deg)//沿X轴旋转	x轴：左边负的，右边正的
+	transform:ratateY(大小deg)//沿Y轴旋转	y轴：上边负的，下边正的
+	transform:ratateZ(大小deg)//沿Z轴旋转	z轴：里边负的，外边正的
+
+透视perspective(视距)：
+	作为一般属性，设置给父元素，作用于所有的3D转换的子元素
+	·透视原理：近大远小
+	·浏览器透视：把近大远小的图像，透视到屏幕上
+	·perspctive:视距：表示视点距离屏幕的距离，视点：用于模拟透视效果时人眼的位置
+	·透视是眼睛到屏幕的距离，是一种展示形式，伪3D效果
+3D变形移动：
+		translateX(100px);	//只移动X轴100px；(和2D没区别)
+		translateY(100px);	//只移动Y轴100px；(和2D没区别)
+
+	(重要)translateZ（100px）；	//是物体到屏幕的距离，Z就是控制物体近大远小。Z越大越接近视距(perspctive)呈现屏幕越大
+	简写：transform:translate3d(x轴, y轴, z轴);	//3d必须小写，x和y单位可以是px或%	z轴单位必须是px
+
+backface-vizibility:hidden;
+	《不是正面对向屏幕就立刻隐藏》：适用于翻转图片；
+
+（CSS3）动画animation:
+		特点是可通过多个节点来精确控制一个或多组动画，常用来实现复杂的动画效果。
+	简写：//一般情况我们就用前两个
+
+		animation:动画名称	动画一周期用的时间	运动曲线	何时开始	播放次数	是否反方向；
+			名称(自己起)		默认（0s）	默认(ease)	默认(0s)	默认(1)		默认(normal);
+									 		    无限循环(infinite)	正常与反向交替(alternate)
+	animation-play-state:paused;暂停动画
+
+(动画格式)式例：
+		div {		《引用动画》
+			animation: shimeng 2s ease 0s infinite alternate
+		}
+这是一组动画：@keyframes shimeng {	 《定义动画》
+			from{
+				transition:translateX(0);	//开始节点
+			}
+			to {
+				transition:translateX(1000px);	//结束节点
+			}
+		}
+多组动画实现方式可用（百分比）：
+		@keyframes go {
+			0% {
+				transition:translate3d(0, 0, 0);开始节点
+			}
+			50% {
+				transition:translate3d(50px, 50px, 50px);中间节点
+			}
+			100% {
+				transition:translate3d(0, 0, 0);结束节点
+			}
+		}
+如果有多组动画变形，都属于transition，用空格隔开即可
+
+
+《重要》CSS3伸缩盒子布局：
+	父级盒子添加：display:flex;
+				min-width:200px;//最小宽度
+				flex-direction:row;(默认水平排版)
+				flex-direction:column;(纵向排版)
+		可以给所有子盒子一起添加份数：flex:1;（每个盒子占1份）
+		也可以一个一个盒子单独添加份数；
+		或（指定某个盒子单独大小剩下的盒子再 添加 份数）
+	（水平对齐）调整主轴（X轴）对齐
+	justify-centen：
+		flex-start;	//默认，从开头(左)排序，盒子顺序不变
+		flex-end;	//从结尾(右)排序，盒子顺序不变
+		center;		//居中显示
+		space-between;	//盒子与盒子中间平均分布空白缝隙
+		space-around;	//盒子左右分布空白缝隙（相当于添加了margin外边距）
+	（垂直对齐）调整侧轴(Y轴)对齐：一般用于单行盒子；
+	align-items:
+		flex-start;	//上对齐
+		flex-end;	//下对齐
+		center;		//居中对齐
+		stretch;	//拉伸对齐（高度等于父亲的高度）
+	控制是否换行：
+	flex-wrap:
+		nowrap;		//默认值，不拆行或不拆列，强制一行显示，压缩子盒子显示
+		wrap;		//必要时换行或换列显示
+		wrap-reverse	//以相反的顺序显示
+
+	堆栈对齐：（主要针对flex容器里面多行的情况）
+	align-centent:
+		必须对父元素设置自有盒子属性dispaly:flex;且横向排列flex-direction:row;且设置换行flex-wrap:wrap;
+		之后才会有效果
+	上面的属性全部都有；
+
+	flex-flow是flex-direction和flex-wrap的简写
+		flex-flow: 排列方式  换不换行；
+
+	order控制盒子前后顺序，由小到大排序，可以是负数。默认值是：0；
+
+
+BFC：触发一块独立的区域
+	触发BFC的属性：	1.float不为none
+			2.position为absolute和fixed
+			3.display为inline-block, table-cell, table-caption, fiex, inline-fiex
+			4.overflow不为visible《最常用》
+
+	BFC用途：	1，清除元素的内部浮动：最常用是给父元素添加overflow-hidden
+				主要用到：计算BFC高度时，自然也会检测浮动盒子的高度
+			2，外边距合并问题：相邻两个盒子其中一个盒子添加	《触发BFC的属性》
+				主要用到：解决垂直方向外边距margin，两个相邻的盒子margin高度重叠现象
+			3，制作右侧自适应的盒子问题：《右侧盒子添加触发BFC的属性》
+				主要用到：触发BFC的区域不与浮动的盒子产生交集，而是紧贴着边缘。
+浏览器前缀（兼容低版本）：
+		-webkit-	兼容：Google·Chrome·Safari·Android·Browser
+		-moz-		兼容：Firefox
+		-o-		兼容：Opera
+		-ms-		兼容：Internet·Explorer·Edge
+		-khtml-		兼容：Konqueror
+背景渐变（多用于移动端）：非常不兼容
+	语法格式：
+			background: -兼容前缀-linear-gradient(渐变的起始位置，起始颜色，结束颜色)；
+		
+		多颜色：background: -兼容前缀-linear-gradient(渐变的起始位置，颜色 位置，颜色 位置)；
+			background: -兼容前缀-linear-gradient(top, red 0%, blue 50%, black 100%)；
+	
+
+
+使用技巧：
+	在一行内的盒子，我们设定行高等于盒子的高度，就可以是里面的文字垂直居中（line-height:盒子高度）
+	外盒子尺寸计算(元素空间尺寸)：
+		(元素)Element空间高度=宽或高+padding+border+margin
+	内盒子尺寸计算(实际大小)：
+		(元素)Element宽或高=内容宽或高+padding+border
+
+（常用）css3：box-sizing:border-box 盒子大小为width (border和padding包含到width里面了)
+
+	绝对定位水平居中/垂直居中：
+		子绝（position:absoulute）父相（position:relative）
+			算法：
+		水平居中：首先left:50%（父盒子宽度的一半大小）然后margin-left:负（子盒子宽度的一半，需要计算）	<上走是负值>
+		垂直居中：首先top:50%（父盒子的高度一半大小）然后margin-top:负（子盒子高度的一半，需要计算）	<上走是负值>
+	(实用)transfrom:translate(50%,50%);
+		变形：移动（X轴，Y轴）自身盒子的一半
+		
+定位模式转换：
+	行内元素 如果添加了 绝对定位/固定定位/float浮动 之后，可以不用转换模式，直接给宽度和高度就可以了
+backface-vizibility:hidden;
+	《不是正面对向屏幕就立刻隐藏》：适用于翻转图片；
+
+CSS W3C统一验证工具：
+	http://validator.w3c.org/unicorn/
+	http://jigsaw.w3.org/css-validator/
+CSS站长之家压缩工具：
+	http://tool.chinaz.com/Tools/CssFormat.aspx
+
+	
+注意：
+	text-decoration:none;(默认，标准文本，可删除链接的下划线)
+
+  文字水平居中和盒子水平居中 区别：
+	文字水平居中用text-align:center;
+	盒子水平居中用margin:上下 左右auto
+  通常用来控制图片/表单与文字对齐
+	vertical-align:middle;中线对齐
+  单行垂直居中很多情况都是有了行高就不用设置高度了：line-height:大小px；
+
+  插入图片和背景图片的区别：
+	插入图片<img src="图片地址"/>
+		更改大小用width和height
+		更改位置是盒模型用margin和padding，把图片看成盒子
+			插入图片适合产品展示类
+  	背景图片background:颜色 url(图片地址) 位 置 是否平铺；
+		更改大小只能用background-size:大小；
+		给该定位置用background-position:位置；
+			背景图片适合做一些小图标和超大背景图
+取消列表前自带的默认样式：
+		list-style: none;
+一般符号都用 arial 这个字体：
+		font-family:arial；
+
+
+(重点)原来隐藏的img,ivzibility:hidden;	
+	鼠标经过div盒子的时候，里面的img图片才显示出来	代码：div:hover img {display:block;}
+
+推荐使用before和after双伪元素清除浮动
+	使用方法：
+		.clerafix:before, .clearfix:after { content:""; display:table}
+			//尾部插入空，dispaly：table(触发BFC清除浮动)
+		.clearfix:after { clear:both;}
+		.clearfix { *zoom:1;}
+
+文本溢出：
+		{white-space:nowrap;强制一行显示
+		 overflow:hidden;溢出隐藏
+		 text-overflow:ellipsis;超出时显示省略标记
+		}
+	三者必须搭配使用才能有text-overflow:ellipsis效果
+伪元素选择器：
+	本质上就是插入一个盒子（标签·行内元素）
+	div::before {content:""} 表示在div盒子内部的前面插入（必须配合content使用）
+	div::after {content:""}  表示在div盒子内部后面插入（必须配合content使用）
+CSS3过渡动画效果：《写在样式里》《谁做动画谁家过渡》
+	transition(过渡)：要过渡的属性名称（必填）  话费的时间（必填）  运动曲线  何时开始；
+		如：transition:	height			0.5s		  ease		0s；
+	所有属性都变化用all就可以，
+		如：transition: all 0.5s ease 0s;
+
+
+	
+		
+
