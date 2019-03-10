@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>对象与函数的案例</title>
+	<style type="text/css">
+		* {
+			margin: 0;
+			padding: 0;
+		}
+		body {
+			background-color: #e3e3e3;
+		}
+		#box {
+			width: 1000px;
+			min-height: 200px;
+			margin: 100px auto;
+			background-color: #fff;
+			border-radius: 30px;
+		}
+		#box1 {
+			border-bottom: 1px solid #000;
+		}
+		#box1 i {
+			float: right;
+		}
+	</style>
+
+
+
+</head>
+<body>
+ <!-- 3,创建论坛系统： -->
+ <div id="box">
+ 	
+ </div>
+
+
+<script type="text/javascript">
+
+// 1.编写函数，求圆的面积
+function round(radius) {
+	return 3.14 * (radius * radius)
+}
+//半径为15的圆的面积
+console.log(round(15));
+
+// 2.编写函数，求一组数的最小值
+var numbers = [5, 4, 8, 11, 2, 33,149, 10];
+
+	function min(number) {
+		var num = number[0];
+		for (var j in number) {
+			if(number[j] < num) {
+				var i = number[j];
+			}
+		}
+		console.log(i);
+	}
+	min(numbers);
+	
+
+
+
+// 3,创建论坛系统：
+
+ var luntanData = {
+        "icon":["pic/1.jpg","pic/2.jpg","pic/3.jpg","pic/4.jpg","pic/5.jpg","pic/6.jpg","pic/7.jpg","pic/8.jpg","pic/9.jpg","pic/10.jpg","pic/b1.jpg","pic/b2.jpg","pic/b3.jpg","pic/b4.jpg","pic/b5.jpg","pic/b6.jpg","pic/b7.jpg","pic/b8.jpg","pic/b9.jpg","pic/b10.jpg"],
+        "zhiding":["置顶","精华","分享","问答","招聘","置顶","精华","分享","问答","招聘","置顶","精华","分享","问答","招聘","置顶","精华","分享","问答","招聘"],
+        "title":["[深圳]NodeParty 2016.04.09 总结", "cnode 社区也切换到 Let's encrypt 了", "国内Nodejs 2015汇总", "展望Nodejs 2016和新年祝福", "展望Nodejs 2016和新年祝福", " 2016和新年祝福", "展望Nodejs 2016和新年祝福", " 2016和新年祝福", "展望Nodejs 2016和新年祝福", "展望Nodejs 2016和新年祝福","[深圳]NodeParty 2016.04.09 总结", "cnode 社区也切换到 Let's encrypt 了", "国内Nodejs 2015汇总", "展望Nodejs 2016和新年祝福", "展望Nodejs 2016和新年祝福", " 2016和新年祝福", "展望Nodejs 2016和新年祝福", " 2016和新年祝福", "展望Nodejs 2016和新年祝福", "展望Nodejs 2016和新年祝福"],
+        "time":["4小时以前","3小时以前","4小时以前","9小时以前","4小时以前","6小时以前","2小时以前","4小时以前","4小时以前","4小时以前","4小时以前","3小时以前","4小时以前","9小时以前","4小时以前","6小时以前","2小时以前","4小时以前","4小时以前","4小时以前"],
+        "url":["https://cnodejs.org/topic/5696e43e6272216e51bff67e","https://cnodejs.org/topic/574453cd754d17df1e44d9a4","https://cnodejs.org/topic/572afb6b15c24e592c16e1e6","https://cnodejs.org/topic/574e4b7479caf4c12f99e9db","https://cnodejs.org/topic/574e4b7479caf4c12f99e9db","https://cnodejs.org/topic/572afb6b15c24e592c16e1e6","https://cnodejs.org/topic/572afb6b15c24e592c16e1e6","https://cnodejs.org/topic/574453cd754d17df1e44d9a4","https://cnodejs.org/topic/574453cd754d17df1e44d9a4","https://cnodejs.org/topic/574453cd754d17df1e44d9a4","https://cnodejs.org/topic/5696e43e6272216e51bff67e","https://cnodejs.org/topic/5696e43e6272216e51bff67e","https://cnodejs.org/topic/5696e43e6272216e51bff67e","https://cnodejs.org/topic/5696e43e6272216e51bff67e","https://cnodejs.org/topic/574eb1e01176fe255bb8d79c","https://cnodejs.org/topic/574eb1e01176fe255bb8d79c","https://cnodejs.org/topic/574eb1e01176fe255bb8d79c","https://cnodejs.org/topic/574eb1e01176fe255bb8d79c","https://cnodejs.org/topic/574eb1e01176fe255bb8d79c"]
+    };
+    var container = document.getElementById('box');
+    var showStr = '';
+    for (var i = 0; i < luntanData.icon.length; i++) {
+    	showStr += '<div id="box1">'+
+						'<img src="'+luntanData.icon[i]+'"atl="图片损坏">'+
+						'<span>'+luntanData.zhiding[i]+'</span>'+
+						'<a href="'+luntanData["url"][i]+'">'+luntanData["title"][i]+'</a>'+
+						'<i>'+luntanData.time[i]+'</i>'+
+					'</div>'
+    }
+
+
+	container.innerHTML = showStr;
+
+</script>
+</body>
+</html>

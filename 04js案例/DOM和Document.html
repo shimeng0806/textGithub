@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>DOM和Document的案例</title>
+</head>
+<body>
+<script type="text/javascript">
+	//1，控制页面标题title的滚动效果，用定时器
+	setInterval(function() {
+		var docTitle = document.title;
+		//切割数组成字符串
+		var titleArr = docTitle.split('');
+		//把数组的第一位删除，并加到数组的最后面
+		titleArr.push(titleArr.shift());
+		//把数组重新合成字符串
+		var newArr = titleArr.join('');
+		//重新设置页面
+		document.title = newArr;
+
+	}, 100)
+
+
+
+
+</script>
+</body>
+</html>

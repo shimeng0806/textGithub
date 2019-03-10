@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"/>
+	<title>字符串的操作</title>
+
+<style type="text/css">
+	
+
+
+
+</style>
+
+</head>
+<body>
+<!-- 3.编写一个能够注册新用户的模块。要求：
+	(1)用户账户名不超过20位，但不少于10位。并且首字母必须是字母。并且必须是qq邮箱。违规后提示用户。
+	(2)用户密码不超过16位，但不少于6位。并且密码中必须包含字母。违规后提示用户。
+	(3)验证码输入必须正确，否则提示用户。验证码为字符串4a5k （忽略大小写） -->
+<div>
+	<input type="text" name="" id="rid">
+	<button id="Registered">注册</button><br/>
+	<input type="password" name="" id='psd'>
+	<button id='submit'>提交</button><br/>
+	<input type="text" name="" id="text" placeholder='请输入4a5k'>
+	<button id="tt">验证</button><br/>
+	<h3 id='hh'>
+		编写一个能够注册新用户的模块。要求：
+		(1)用户账户名不超过20位，但不少于10位。并且首字母必须是字母。并且必须是qq邮箱。违规后提示用户。
+		(2)用户密码不超过16位，但不少于6位。并且密码中必须包含字母。违规后提示用户。
+		(3)验证码输入必须正确，否则提示用户。验证码为字符串4a5k （忽略大小写字母）
+	</h3>
+	<button id='th'>替换</button>
+</div>
+
+
+<script type="text/javascript">
+	function my$(id) {
+		return document.getElementById(id);
+	}
+	var str = "hello frand goodbye frand";
+
+// 1,要求将第一个字符串frand，替换成(XXX);
+		// 用.substr()和.substring()截取字符串，再用.concat()字符串拼接，并赋值给变量
+	var begin = str.substr(0, 6);
+	console.log(begin.length);
+	var end = str.substring(11);
+	console.log(end);
+	var str1 = begin.concat("(XXX)", end);
+	console.log(str1);
+		//用.replace();方法替换第一个
+	var str2 = str.replace("frand", "(XXX)");
+	console.log(str2);
+
+//2，要求将所有字符串的frand，替换成（XXX）;
+// ----思路： (循环次数不确定)用循环while；
+// 	当字符串中还有frand时，就使用str.replace()方法替换掉第一个
+	while (str.indexOf('frand') != -1) {
+		 str = str.replace("frand", "(XXX)");
+		 console.log(str);
+	}
+
+
+
+/*3.编写一个能够注册新用户的模块。要求：
+	(1)用户账户名不超过20位，但不少于10位。并且首字母必须是字母。并且必须是qq邮箱。违规后提示用户。
+	
+	(3)验证码输入必须正确，否则提示用户。验证码为字符串4a5k （忽略大小写）*/
+
+my$("Registered").onclick = function () {
+	var rid = my$("rid").value;
+	var firstCode = rid.charCodeAt(0);
+	// 用户账户名不超过20位，但不少于10位
+	if (rid.length >= 10 && rid.length <=20) {
+		// 首字母必须是字母
+		if ((firstCode >= 65 && firstCode <=90) || (firstCode >= 97 && firstCode <= 122)) {
+			// 判断是不是qq邮箱
+			var index = rid.indexOf('@qq.com');
+			var lastIndex = rid.lastIndexOf('@qq.com');
+			//邮箱不能是空   &&  邮箱写在最后       &&     只能写一个
+			if (index != -1 && index == lastIndex && index == ((rid.length -1) - 6)) {
+				alert("注册成功");
+			}else {
+				alert('请填写qq邮箱');
+			}	
+		} else {
+			alert('输入不合法');
+		}
+	}else {
+				alert('请输入不少于10位');
+	}
+}
+// (2)用户密码不超过16位，但不少于6位。并且密码中必须包含字母。违规后提示用户。
+my$('submit').onclick = function () {
+	var psd = my$('psd').value;
+	if (psd.length >= 6 && psd.length <= 16) {
+		console.log('长度正常');
+	}else {
+		console.log('长度不正常');
+	}
+
+}
+	// (3)验证码输入必须正确，否则提示用户。验证码为字符串4a5k （忽略大小写）
+my$('tt').onclick = function () {
+	var text = my$('text').value;
+	if (text == '4a5k' || text == '4A5K') {
+		alert('验证成功');
+	}else {
+		alert('验证失败');
+	}
+}
+
+
+
+// 4.编写程序，能够将文章中的出现的所有【指定文字】都替换为【目标文字】
+
+my$('th').onclick = function () {
+	var h3 = my$('hh').innerText;
+	while (h3.indexOf('字母') != -1) {
+		h3 = h3.replace('字母', 'zimu');
+	}
+	console.log(h3);
+}
+
+
+</script>
+</body>
+</html>

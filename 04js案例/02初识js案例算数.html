@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"/>
+	<title>两个数算数</title>
+	<style type="text/css">
+		.box, .result {
+			width: 300px;
+			height: 93px;
+			border: 1px solid red;
+			margin: 50px;
+		}
+	</style>
+</head>
+<body>
+
+<div class="box">
+	<span>请输入第一个数字：</span><input id ="userNumber1" type="text" placeholder="请输入一个数字"/><br />
+	<span>请输入第二个数字：</span><input id ="userNumber2" type="text" placeholder="请输入一个数字"/>
+</div>
+
+<div class="result">
+	<button id = "btn1">减法计算</button><input id = "subtraction"type="text" placeholder="减法"/><br />
+	<button id = "btn2">加法计算</button><input id = "addition" type="text" placeholder="加法"/><br />
+	<button id = "btn3">乘法计算</button><input id = "multiplication" type="text" placeholder="乘法"/><br />
+	<button id = "btn4">除法计算</button><input id = "division" type="text" placeholder="除法"/>
+</div>
+
+<script type="text/javascript">
+	function my$(id) {
+		return document.getElementById(id);
+	}
+
+	(function () {
+		my$("btn1").onclick = function () {
+			my$("subtraction").value = my$("userNumber1").value - my$("userNumber2").value;
+		}
+		my$("btn2").onclick = function () {
+			my$("addition").value = (my$("userNumber1").value * 1) + (my$("userNumber2").value * 1);
+		}
+		my$("btn3").onclick = function () {
+			my$("multiplication").value = my$("userNumber1").value * my$("userNumber2").value;
+		}
+		my$("btn4").onclick = function () {
+			my$("division").value = my$("userNumber1").value / my$("userNumber2").value;
+		}
+	}) ()
+
+
+
+
+</script>
+</body>
+</html>

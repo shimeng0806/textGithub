@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"/>
+	<title>数组的复习及练习</title>
+	<!-- 第三题还没做 -->
+
+	<style type="text/css">
+		.box {
+			width: 80%;
+			border: 1px solid red;
+			margin: 0 auto;
+		}
+		.box h2 {
+			text-align: center;
+		}
+		.box button {
+			margin-left: 150px;
+		}
+		.box1 {
+			width: 80%;
+			border: 1px solid #000;
+			margin: 0 auto;
+		}
+	</style>
+</head>
+<body>
+
+<h5>
+1.	编写一个页面。要求：
+		a)	所有书籍的信息存放在一个模拟数据库中，模拟数据库为allBookArr。
+		b)	点击添加按钮时，输入的书籍信息作为一条信息条目存入模拟数据库中。并提示用户添加成功。
+		c)	点击查询按钮时，会在页面中加载所有数据，并以表格的形式进行展示
+3.	编写程序，要求
+		a)	假设数组infoArr是后台提供的商品列表数组。内容是
+		var inforArr = [
+			[‘口红’,’250’,’201x年,x月,x日’,’201y年y月y日’,’129’],
+			[‘香水’,’400’,’201x年,x月,x日’,’201y年y月y日’,’119’],
+			[‘衣服’,’170’,’201x年,x月,x日’,’201y年y月y日’,’770’],
+			[‘球鞋’,’125’,’201x年,x月,x日’,’201y年y月y日’,’999’],
+			[‘手机’,’6000’,’201x年,x月,x日’,’201y年y月y日’,’64’],
+			[‘汽车’,’250000’,’201x年,x月,x日’,’201y年y月y日’,’10’],
+		]
+		b)	页面中用户输入序号，点击【获取相应的商品信息】，能够将对应商品信息打印出来。如果输入all，则打印所有的商品信息
+		例如：输入4
+		打印：球鞋，125元，201x年,x月,x日~’201y年y月y日，还剩999件商品
+		例如：输入‘all’
+		打印：口红，250元，201x年,x月,x日~’201y年y月y日，还剩129件商品
+		香水，400元，201x年,x月,x日~’201y年y月y日，还剩119件商品
+		衣服，170元，201x年,x月,x日~’201y年y月y日，还剩770件商品
+		球鞋，125元，201x年,x月,x日~’201y年y月y日，还剩999件商品
+		手机，6000元，201x年,x月,x日~’201y年y月y日，还剩64件商品
+		汽车，250000元，201x年,x月,x日~’201y年y月y日，还剩10件商品
+		c)	页面中输入序号，点击【删除本条商品信息】，能够将对应的商品信息删除。
+</h5>
+<div class='box'>
+	<h2>图书管理系统</h2>
+	<span>书名：</span><input type="text" name="" id='book'>
+	<span>作者：</span><input type="text" name="" id='author'>
+	<span>价格：</span><input type="text" name="" id='price'>
+	<span>数量：</span><input type="text" name="" id='num'><br/>
+	<button id='push'>添加</button>
+	<button id='inquire'>查询</button><br/>
+	
+</div>
+<div id='box1'>
+	
+</div>
+
+
+<script type="text/javascript">
+// 案例1:
+		/*编写一个页面。要求：
+		a)	所有书籍的信息存放在一个模拟数据库中，模拟数据库为allBookArr。
+		b)	点击添加按钮时，输入的书籍信息作为一条信息条目存入模拟数据库中。并提示用户添加成功。
+		c)	点击查询按钮时，会在页面中加载所有数据，并以表格的形式进行展示
+		*/
+		//创建一个空数组，存取数据
+		var arr = [];
+	myId('push').onclick = function () {
+		
+		var book = myId('book').value;
+		var author = myId('author').value;
+		var price = myId('price').value;
+		var num = myId('num').value;
+		//判断用户输入的是不是空
+		if (book.length == 0 || author.length == 0 ||
+		 price.length == 0 || num.length == 0) {
+			alert('对不起您输入的不能为空');
+		}else {
+			//创建书签条目
+			var bookInfor = [book, author, price, num];
+			console.log(bookInfor);
+			//将添每个书签条目加到arr数组中去
+			arr.push(bookInfor);
+			//清空浏览器上的输入的内容，方便下次输入
+			myId('book').value = '';
+			myId('author').value = '';
+			myId('price').value = '';
+			myId('num').value = '';
+			alert('添加成功');
+		}
+	};
+			console.log(arr);
+	//当点击查询按钮显示添加的内容
+	myId('inquire').onclick = function () {
+		console.log(arr.length);
+		//创建表格
+		var showStr = '<table border="1" cellspacing="0" width="500" align="center">'+
+						'<tr>'+
+							'<th>书名</th>'+
+							'<th>作者</th>'+
+							'<th>价格</th>'+
+							'<th>数量</th>'+
+						'</tr>';
+		//有多少数据就添加多少内容，（加tr）
+		for (var i = 0; i < arr.length; i++) {
+			showStr += '<tr>'+
+						'<td>'+ arr[i][0] +'</td>'+
+						'<td>'+ arr[i][1] +'</td>'+
+						'<td>'+ arr[i][2] +'</td>'+
+						'<td>'+ arr[i][3] +'</td>'+
+						'</tr>';
+		}
+		
+		//添加结束teble标签
+		showStr += '</table>';
+		//将拼接好的字符串添加到box1中
+		myId('box1').innerHTML = showStr;
+	};
+/*	
+3.	编写程序，要求
+		a)	假设数组infoArr是后台提供的商品列表数组。内容是
+		var inforArr = [
+			[‘口红’,’250’,’201x年,x月,x日’,’201y年y月y日’,’129’],
+			[‘香水’,’400’,’201x年,x月,x日’,’201y年y月y日’,’119’],
+			[‘衣服’,’170’,’201x年,x月,x日’,’201y年y月y日’,’770’],
+			[‘球鞋’,’125’,’201x年,x月,x日’,’201y年y月y日’,’999’],
+			[‘手机’,’6000’,’201x年,x月,x日’,’201y年y月y日’,’64’],
+			[‘汽车’,’250000’,’201x年,x月,x日’,’201y年y月y日’,’10’],
+		]
+		b)	页面中用户输入序号，点击【获取相应的商品信息】，能够将对应商品信息打印出来。如果输入all，则打印所有的商品信息
+		例如：输入4
+		打印：球鞋，125元，201x年,x月,x日~’201y年y月y日，还剩999件商品
+		例如：输入‘all’
+		打印：口红，250元，201x年,x月,x日~’201y年y月y日，还剩129件商品
+		香水，400元，201x年,x月,x日~’201y年y月y日，还剩119件商品
+		衣服，170元，201x年,x月,x日~’201y年y月y日，还剩770件商品
+		球鞋，125元，201x年,x月,x日~’201y年y月y日，还剩999件商品
+		手机，6000元，201x年,x月,x日~’201y年y月y日，还剩64件商品
+		汽车，250000元，201x年,x月,x日~’201y年y月y日，还剩10件商品
+		c)	页面中输入序号，点击【删除本条商品信息】，能够将对应的商品信息删除。
+		*/
+		/*var inforArr = [
+			['口红', '250', '201x年，x月，x日', '201y年，y月，y日', '129'],
+			['香水', '400', '201x年，x月，x日', '201y年，y月，y日', '119'],
+			['衣服', '170', '201x年，x月，x日', '201y年，y月，y日', '770'],
+			['球鞋', '125', '201x年，x月，x日', '201y年，y月，y日', '999'],
+			['手机', '6000', '201x年，x月，x日', '201y年，y月，y日', '69'],
+			['汽车', '250000', '201x年，x月，x日', '201y年，y月，y日', '10']
+		];*/
+
+	/*var array = [1, 2, , 3, 5];
+	console.log(array.length);
+	for (var i in array) {
+		console.log(array[i]);
+	}
+	console.log(array);*/
+	
+/*
+案例4
+	 var arr = [];
+	 	console.log(arr.length);
+	 	// 先算括号里面的添加'a'，再添加里面为true的返回值1，
+	 arr.push(arr.push('a'));
+	 	console.log(arr);
+	 	console.log(arr.length);
+	 	//先算括号里面的pop()删除最后一个元素1，再在头部添加括号里面为true的返回值
+	 arr.unshift(arr.pop());
+	 	console.log(arr);
+	 	console.log(arr.length);
+	 	console.log(arr[0]);
+	 	//删除arr的第一个元素但是不影响数组的长度
+	 delete arr[0];
+	 	console.log(arr);
+	 	console.log(arr.length);
+*/
+/*
+案例5
+	 	var arr = [1,2,3,4,5];
+		for(var i=0;i<arr.length;i++){
+			//输出删除的元素
+			console.log(arr.shift());
+		
+		// i=0 lenth=4 删除1
+		// i=1 lenth=3 删除2
+		// i=2 lenth=2 删除3
+		}
+*/
+
+
+
+	function myId(id) {
+		return document.getElementById(id);
+	} 
+</script>
+</body>
+</html>

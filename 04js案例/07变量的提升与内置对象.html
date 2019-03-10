@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>案例</title>
+	<style type="text/css">
+		#box {
+			width: 200px;
+			height: 200px;
+			border: 1px solid #000;
+			background-color: rgba(0, 0, 0, 0.2);
+			color: #fff;
+			font-size: 45px;
+			text-align: center;
+			line-height: 200px;
+		}
+
+
+
+	</style>
+</head>
+<body>
+
+<h3>
+	四、	编程题
+1.	编写验证码模块，要求：
+	a)	初始状态时下方div中没有验证码。
+	b)	点击获取验证码后下方div才显示验证码
+	c)	用户如果输入的内容和验证码相同时，如果点击【提交验证码】按钮，可以提示验证码正确。否则提示输入错误。
+	d)	验证码判断时忽略大小写
+ 
+2.	编写模块，要求在页面中用户输入日期，点击计算按钮后能够计算出本年还剩下多少天
+3.	编写【图书馆管理系统的登录页面】，要求：(未实现)
+	a) 用户名不得以数字开头，6~12位
+	b) 密码必须包含字母，6~12位
+	c) 包含验证码模块，忽略大小写，验证码4位
+	d) 验证通过后，点击登录按钮能够跳转到【图书馆管理系统页面】
+4.	编写【限时秒杀】案例(未实现)
+
+</h3>
+
+
+<span>输入验证码：</span><input type="text" name="" alt="" id="input1">
+<div id="box"></div>
+<button id="btn">获取验证码</button>
+<button id="btn1">提交验证码</button>
+
+
+
+<script type="text/javascript">
+	//编写模块，要求在页面中用户输入今天日期，点击计算按钮后能够计算出本年还剩下多少天
+	var date1 = new Date();
+	var date2 = new Date(2019, 12, 30,);
+	var cha = parseInt((date2 - date1) / 86400000);
+	console.log(date1);
+	console.log(cha + '天');
+// console.log(Date());
+// console.log(Date(Date(2000,1,1)));
+// console.log(Date(new Date()));
+console.log(Date(new Date(2000,1,1)));
+
+// 观察下面代码：
+var func = function(){
+		if(arguments[0] instanceof Array){
+	console.log(arguments[0]);
+	console.log(arguments[0].length);
+}
+return arguments.length;
+}
+var arr = [1,2,3,4,5];
+console.log(func(arr));
+
+
+//用Math需掌握的内容（获取随机数）
+
+//创建一个能够获取随机数的函数，给出范围，能够从范围中获取一个随机数
+function getRandomNumber(min, max) {
+	return Math.round(Math.random() * (max - min) + min);
+}
+console.log(getRandomNumber(5, 80));
+
+//获取随机字符长度的，指定长度的字符串（用来获取验证码）
+
+function getRandomStr(length) {
+	var allCharacter = 'abcdefghijklmnopqrstuvwxyz0123456789ABCDEFGHIGKMLNOPQRSTUVWXYZ';
+	var finalStr = '';
+	for (var i = 0; i < length; i++) {
+		var index = getRandomNumber(0, 62);
+		var tempStr = allCharacter[index];
+		finalStr += tempStr;
+	}
+	return finalStr;
+}
+var str1 = getRandomStr(4);
+console.log(str1);
+
+
+/*1.	编写验证码模块，要求：
+	a)	初始状态时下方div中没有验证码。
+	b)	点击获取验证码后下方div才显示验证码
+	c)	用户如果输入的内容和验证码相同时，如果点击【提交验证码】按钮，可以提示验证码正确。否则提示输入错误。
+	d)	验证码判断时忽略大小写（为实现）
+*/
+	var btn = document.getElementById('btn');
+	var box = document.getElementById('box');
+	var btn1 = document.getElementById('btn1');
+	var ipu = document.getElementById('input1');
+	//b)	点击获取验证码后下方div才显示验证码
+	btn.onclick = function() {
+		//调用获取随机数长度为4的函数，且在div中显示
+		box.innerText = getRandomStr(4);
+	};
+	//c)	用户如果输入的内容和验证码相同时，如果点击【提交验证码】按钮，可以提示验证码正确。否则提示输入错误。
+	btn1.onclick = function() {
+		var input = ipu.value;
+		if (input.length == 0 || input.length < 4) {
+			console.log('验证码长度不对');
+		}else if(input == box.innerText){
+			console.log('恭喜你验证通过');
+		}else {
+			console.log('请您输入正确的验证码');
+		}
+	}
+
+</script>
+</body>
+</html>
